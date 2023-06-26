@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Agenda de Contatos</title>
+</head>
+<body>
+        <div class="container">
+            <h1>Agenda de Contatos</h1>
+            <form id="form">
+
+                <input type="text" required placeholder="Nome" id="nome-contato">
+
+                <input type="number" required placeholder="Número(Com DD)" id="numero-contato">
+
+                <button type="submit" id="btn">Salvar</button>
+
+            </form>
+
+            <table cellspacing = "0">
+                <h1>
+                    Lista de Contatos
+                <thead>
+                    <tr>
+                        <th>
+                            Nome
+                        </th>
+                        <th>
+                            Número
+                        </th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                </tbody>
+            </table>
+        </div>
+</body>
+
+    <script>
+        const form = document.getElementById('form');
+        const nomeContato = document.getElementById('nome-contato');
+        const numeroContato = document.getElementById('numero-contato');
+
+        const nome = [];
+        const numero = [];
+
+        let linhas = ' ';
+
+        form.addEventListener('submit', function(e){
+            e.preventDefault();
+
+            adicionar();
+            atualizar();
+        })
+
+        function adicionar(){
+
+            if(nome.includes(nomeContato.value)){
+
+            alert (`Nome <b>${nomeContato.value}</b> já foi inserido!`)}
+
+
+        else{
+
+            nome.push(nomeContato.value);
+            numero.push(Number(numeroContato.value));
+
+         let linha = '<tr>';
+         linha += `<td>${nomeContato.value}</td>`;
+         linha += `<td>${numeroContato.value}</td>`;
+         linha += `</td>`;
+         linhas += linha;
+        }
+
+        nomeContato.value = ''
+        numeroContato.value = ''
+
+        }
+
+    function atualizar(){
+
+        const corpoTabela = document.querySelector(`tbody`);
+        corpoTabela.innerHTML = linhas
+}
+    </script>
+</html>
